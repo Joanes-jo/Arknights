@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Operator Access | Lappland</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        arknights: { black: "#08090b", dark: "#111317", gray: "#1c1f24", red: "#b91c1c", redlight: "#ef4444", white: "#f1f1f1" }
+                    },
+                    boxShadow: { redglow: "0 0 40px rgba(185,28,28,.25)" }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen bg-black text-white overflow-x-hidden">
+    <div class="fixed inset-0 -z-10">
+        <!-- Adriano esse é o div que faz ter as linhas no fundo do background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-zinc-950 to-red-950/30"></div>
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-red-700/10 rounded-full blur-[130px]"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-red-600/10 rounded-full blur-[130px]"></div>
+        <div
+            class="absolute inset-0 opacity-[0.025] bg-[linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] bg-[size:50px_50px]">
+        </div>
+    </div>
+
+    <main class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+        <div
+            class="w-full max-w-6xl min-h-[650px] grid lg:grid-cols-[1.1fr_0.9fr] overflow-hidden border border-white/10 bg-zinc-950/90 shadow-2xl shadow-black">
+
+            <!-- essa é a parte que mostra aquela imagem da esquerda -->
+            <section class="relative min-h-[500px] lg:min-h-[650px] overflow-hidden">
+                <div class="absolute inset-0">
+                    <img src="assets/lappland.png" alt="Lappland"
+                        class="w-full h-full object-cover object-center grayscale-[20%]">
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-black/10 to-black/90"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20"></div>
+                <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-red-950/40 to-transparent"></div>
+
+                <div class="absolute top-8 left-8 w-20 h-1 bg-red-600"></div>
+                <div class="absolute top-8 left-8 w-1 h-20 bg-red-600"></div>
+
+                <div class="absolute bottom-10 left-8 right-8 z-10">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="h-px w-10 bg-red-500"></span>
+                        <span class="text-xs tracking-[0.35em] uppercase text-red-400 font-bold">Operator</span>
+                    </div>
+                    <h1 class="text-5xl sm:text-6xl font-black uppercase tracking-tighter leading-none">Lappland</h1>
+                    <p class="mt-2 text-sm uppercase tracking-[0.3em] text-zinc-400">O lobo da Decadencia</p>
+                    <div class="mt-6 flex items-center gap-4">
+                        <div class="h-px flex-1 bg-white/10"></div>
+                        <span class="text-[10px] font-mono text-zinc-600">RHODES ISLAND // OPERATOR</span>
+                    </div>
+                </div>
+
+                <div class="absolute top-8 right-8 text-right">
+                    <span class="block text-[10px] tracking-[0.3em] text-zinc-500">UNIT</span>
+                    <span class="text-2xl font-black text-white">06</span>
+                </div>
+            </section>
+
+            <!-- LOGIN -->
+            <section class="relative bg-zinc-950 p-7 sm:p-10 lg:p-14 flex flex-col justify-center">
+                <div
+                    class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-red-700 to-transparent">
+                </div>
+
+                <div class="mb-10">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 bg-red-700 flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2"
+                                    d="M12 3v18M3 12h18"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold tracking-[0.3em] text-zinc-500">RHODES ISLAND</p>
+                            <p class="text-xs font-mono text-red-500">SECURE TERMINAL</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs uppercase tracking-[0.3em] text-red-500 font-bold">Operator Access</p>
+                    <h2 class="mt-3 text-4xl font-black tracking-tight">Bem vindo de volta.</h2>
+                    <p class="mt-3 text-sm leading-relaxed text-zinc-500">Insira suas credenciais para acessar o sistema
+                        operacional.</p>
+                </div>
+
+                <div id="auth-alert" class="hidden mb-5 border px-4 py-3 text-sm">
+                    <span id="auth-alert-message"></span>
+                </div>
+
+                <form id="form-login" class="space-y-6">
+                    <div>
+                        <label for="login-email"
+                            class="block mb-2 text-[10px] uppercase tracking-[0.25em] font-bold text-zinc-500">Identification</label>
+                        <input type="email" id="login-email" required placeholder="Operator@rhodes.com"
+                            class="w-full bg-zinc-900 border border-zinc-800 px-4 py-4 text-sm text-white outline-none placeholder-zinc-700 transition-all focus:border-red-700 focus:bg-zinc-900/80 focus:ring-1 focus:ring-red-700">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="login-password"
+                                class="text-[10px] uppercase tracking-[0.25em] font-bold text-zinc-500">Security
+                                Key</label>
+                            <span class="text-[9px] font-mono text-zinc-700">ENCRYPTED</span>
+                        </div>
+                        <input type="password" id="login-password" required placeholder="••••••••••••"
+                            class="w-full bg-zinc-900 border border-zinc-800 px-4 py-4 text-sm text-white outline-none placeholder-zinc-700 transition-all focus:border-red-700 focus:bg-zinc-900/80 focus:ring-1 focus:ring-red-700">
+                    </div>
+
+                    <button type="submit"
+                        class="group relative w-full overflow-hidden bg-red-700 hover:bg-red-600 py-4 text-sm font-black uppercase tracking-[0.2em] text-white transition-all active:scale-[0.98]">
+                        <span class="relative z-10">Access System</span>
+                        <span
+                            class="absolute inset-0 -translate-x-full group-hover:translate-x-0 bg-white/10 transition-transform duration-500"></span>
+                    </button>
+                </form>
+
+                <div class="mt-8 border-t border-zinc-900 pt-5">
+                    <div class="flex justify-between text-[9px] font-mono uppercase">
+                        <span class="text-zinc-700">Demo Access</span>
+                        <span class="text-red-700">AUTHORIZED</span>
+                    </div>
+                    <div class="mt-2 flex justify-between gap-3 text-xs font-mono">
+                        <span class="text-zinc-500">Lappland@rhodes.com</span>
+                        <span class="text-zinc-700">Operator123</span>
+                    </div>
+                </div>
+              
+                <div class="mt-8 flex justify-between text-[9px] font-mono text-zinc-700">
+                    <span>SYSTEM v1.0</span>
+                    <span>STATUS: ONLINE</span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        //PARTE QUE EU PEDI PRA IA POR QUE EU NÃO SEI COMO FUNCIONA (SÓ MUDEI ALGUMAS COISAS)
+        const formLogin = document.getElementById("form-login");
+        const alertBox = document.getElementById("auth-alert");
+        const alertMessage = document.getElementById("auth-alert-message");
+
+        function mostrarMensagem(mensagem, sucesso = false) {
+            alertBox.classList.remove("hidden");
+            alertMessage.textContent = mensagem;
+            if (sucesso) {
+                alertBox.className = "mb-5 border border-green-800/50 bg-green-950/30 px-4 py-3 text-sm text-green-400";
+            } else {
+                alertBox.className = "mb-5 border border-red-800/50 bg-red-950/30 px-4 py-3 text-sm text-red-400";
+            }
+        }
+
+        formLogin.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("login-email").value.trim();
+            const senha = document.getElementById("login-password").value;
+
+            if (email === "Lappland@rhodes.com" && senha === "Operator123") {
+                mostrarMensagem("ACCESS GRANTED — Welcome, Operator.", true);
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 1000);
+                return;
+            }
+
+            const usuarioSalvo = localStorage.getItem("usuarioOperator");
+
+            if (!usuarioSalvo) {
+                mostrarMensagem("ACCESSO NEGADO — Operador não encontrado.");
+                return;
+            }
+
+            const usuario = JSON.parse(usuarioSalvo);
+
+            if (email === usuario.email && senha === usuario.senha) {
+                mostrarMensagem("ACCESSO CONCLUIDO — Bem vinda, Lappland.", true);
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 1000);
+            } 
+        });
+
+    </script>
+
+</body>
+
+</html>
